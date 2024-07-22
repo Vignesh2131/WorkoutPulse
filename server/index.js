@@ -8,7 +8,7 @@ const port = process.env.PORT
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/workouts", workOutRoutes);
+app.use("/api", workOutRoutes);
 
 mongoose.connect(process.env.MONGODB_CONNECTION_URI)
     .then(() => {

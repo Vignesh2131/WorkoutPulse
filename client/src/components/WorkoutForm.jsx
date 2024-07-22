@@ -1,34 +1,40 @@
 import { useState } from "react"
+import useWorkoutsContext from "../hooks/useWorkoutContext";
 
 
 const WorkoutForm = () => {
+    const {dispatch}=useWorkoutsContext();
     const [title, setTitle] = useState("");
     const [reps, setReps] = useState("");
     const [load, setLoad] = useState("");
-    const [count, setCount] = useState("");
+    const [setCount, setSetCount] = useState("");
     const [error, setError] = useState(null);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const workOut = { title, load, reps, count };
-        const response = await fetch('/api/workouts', {
-            method: 'POST',
-            body: JSON.stringify(workOut),
-            headers: {
-                'Content-Type':'application/json'
-            }
-        })
+      const workOut = { title, load, reps, setCount };
+      console.log(workOut)
+        const response = await fetch("http://localhost:4000/api/workouts/", {
+          method: "POST",
+          body: JSON.stringify(workOut),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         const json = await response.json();
         if (!response.ok) {
             setError(json.error)
         }
-        if (response.ok) {
-            setTitle('');
-            setLoad('');
-            setCount('');
-            setReps('');
-            setError(null)
-            console.log("New workout added", json);
+      if (response.ok) { 
+      
+        setTitle('');
+        setLoad('');
+        setSetCount('');
+        setReps('');
+        setError(null)
+        
+        console.log("New workout added", json);
+        dispatch({ type: "CREATE_WORKOUT", payload: json });
         }
     }
   return (
@@ -50,13 +56,13 @@ const WorkoutForm = () => {
         }}
         value={load}
       />
-      <label htmlFor="setCount">Sets: </label>
+      <label htmlFor="count">Sets: </label>
       <input
         type="text"
         onChange={(e) => {
-          setCount(e.target.value);
+          setSetCount(e.target.value);
         }}
-        value={count}
+        value={setCount}
       />
       <label htmlFor="Reps">Reps: </label>
       <input
