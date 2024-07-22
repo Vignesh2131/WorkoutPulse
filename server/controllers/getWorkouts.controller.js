@@ -6,4 +6,4 @@ const getAllWorkouts = async (req, res) => {
   res.status(200).json(workouts);
 };
 
-module.exports = getAllWorkouts
+module.exports = {getAllWorkouts}

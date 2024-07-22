@@ -10,4 +10,4 @@ const postWorkOut = async(req,res) => {
     }
 }
 
-module.exports = postWorkOut
+module.exports = {postWorkOut}

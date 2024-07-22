@@ -16,4 +16,4 @@ const updateWorkout = async (req, res) => {
     res.status(200).json({message:"Workout Updated",workout})
 }
 
-module.exports=updateWorkout
+module.exports = { updateWorkout }

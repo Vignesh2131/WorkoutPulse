@@ -11,4 +11,4 @@ const getWorkoutById = async (req, res) => {
   res.status(200).json(workout);
 };
 
-module.exports = getWorkoutById
+module.exports = { getWorkoutById }

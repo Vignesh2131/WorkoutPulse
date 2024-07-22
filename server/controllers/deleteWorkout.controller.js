@@ -11,4 +11,4 @@ const deleteWorkout = async (req, res) => {
     res.status(200).json({message:`Workout deleted`,workout})
 }
 
-module.exports = deleteWorkout
+module.exports = {deleteWorkout}
