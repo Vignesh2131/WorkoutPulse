@@ -12,18 +12,17 @@ const Home = () => {
               throw new Error("Response error");
             }
             const data = await response.json();
-            console.log(data);
             dispatch({ type: 'SET_WORKOUTS', payload:data})
           } catch (error) {
             console.error("Error fetching workouts:", error);
           }
         }; 
         fetchWorkOut();
-    },[])
+    },[dispatch])
   return (
       <div className="home">
           <div className="workouts">{
-              workouts.length > 0 ?
+              workouts ?
                   (workouts.map(workout =>
                       (<WorkoutDetails key={workout._id} workout={workout}/>)))
                   : (<p>Loading workouts</p>)
