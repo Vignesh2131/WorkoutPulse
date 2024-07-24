@@ -11,14 +11,14 @@ const Home = () => {
             if (!response.ok) {
               throw new Error("Response error");
             }
-            const data = await response.json();
-            dispatch({ type: 'SET_WORKOUTS', payload:data})
+            const json = await response.json();
+            dispatch({ type: 'SET_WORKOUTS', payload:json})
           } catch (error) {
             console.error("Error fetching workouts:", error);
           }
         }; 
         fetchWorkOut();
-    },[dispatch])
+    },[dispatch,workouts])
   return (
       <div className="home">
           <div className="workouts">{
